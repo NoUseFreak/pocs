@@ -1,0 +1,8 @@
+filters:
+  # - upstream: argocd-argocd-server
+    # paths: 
+    #   - /applications/argocd/ingress-nginx?resource=
+  # - upstream: ""
+  #   paths:
+  #     - /ws/ResearchOutputService
+  #     - /portal-rest/

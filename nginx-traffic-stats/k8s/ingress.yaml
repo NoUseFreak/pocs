@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-traffic-stats
+  labels:
+    name: nginx-traffic-stats
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: nginx-traffic-stats
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: nginx-traffic-stats
+            port: 
+              number: 80

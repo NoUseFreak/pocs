@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-traffic-stats
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-traffic-stats
+  template:
+    metadata:
+      labels:
+        app: nginx-traffic-stats
+      annotations:
+        ad.datadoghq.com/logs_exclude: "true"
+    spec:
+      serviceAccountName: nginx-traffic-stats
+      containers:
+        - name: nginx-traffic-stats
+          image: ghcr.io/nousefreak/pocs/nginx-traffic-stats:dev
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "200m"
+          livenessProbe:
+            httpGet:
+              path: /metrics
+              port: 2112
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          ports:
+            - containerPort: 2112
