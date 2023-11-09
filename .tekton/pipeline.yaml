@@ -6,8 +6,6 @@ spec:
   tasks:
   - name: task-1
     taskSpec:
-      params:
-      - name: username
       steps:
       - image: alpine:3.15
         script: |
